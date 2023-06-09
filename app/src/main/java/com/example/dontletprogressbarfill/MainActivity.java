@@ -24,15 +24,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        progressBar = findViewById(R.id.progressBar);
-
-        gameOverText = findViewById(R.id.gameOverText);
-
+        setContentView(R.layout.mainscreen_layout);
     }
 
     public void onClickLeft(View view) {
+
         if (!running) {
             running = true;
             ProgressThread thread = new ProgressThread();
@@ -51,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         Right.setEnabled(false);
         Left.setEnabled(true);
         fill = fill - 5;
+    }
+
+    public void onClickTest(View view) {
+        setContentView(R.layout.activity_main);
+        progressBar = findViewById(R.id.progressBar);
+        gameOverText = findViewById(R.id.gameOverText);
     }
 
     class ProgressThread extends Thread {
