@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button Left, Right;
 
-    private int fill = 0;
+    private int fill = 0, increment = 1;
 
     private ProgressBar progressBar;
 
@@ -21,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView gameOverText;
 
-    private Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,36 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
         gameOverText = findViewById(R.id.gameOverText);
 
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (running) {
-                    if (!gameOver) {
-                        fill = fill + 10;
-                        progressBar.setProgress(fill);
-                    }
-                    if (fill >= 100 && !gameOver) {
-                        gameOver = true;
-                        progressBar.setVisibility(View.INVISIBLE);
-                        gameOverText.setVisibility(View.VISIBLE);
-                        return;
-                    }
-                    SystemClock.sleep(500);
-                }
-            }
-        });
     }
 
     public void onClickLeft(View view) {
         if (!running) {
             running = true;
+            ProgressThread thread = new ProgressThread();
             thread.start();
         }
         Left = findViewById(R.id.leftButton);
         Right = findViewById(R.id.rightButton);
         Right.setEnabled(true);
         Left.setEnabled(false);
-        fill = fill - 10;
+        fill = fill - 5;
     }
 
     public void onClickRight(View view) {
@@ -69,6 +52,32 @@ public class MainActivity extends AppCompatActivity {
         Right = findViewById(R.id.rightButton);
         Right.setEnabled(false);
         Left.setEnabled(true);
-        fill = fill - 10;
+        fill = fill - 5;
+    }
+
+    class ProgressThread extends Thread {
+        @Override
+        public void run() {
+            while (running) {
+                try {
+                    if (!gameOver) {
+                        if (fill <= 1) {
+                            fill = 1;
+                        }
+                        increment = increment + 1;
+                        fill = fill + increment;
+                        progressBar.setProgress(fill);
+                    }
+                    if (fill >= 100 && !gameOver) {
+                        gameOverText.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        gameOver = true;
+                    }
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+
+                }
+            }
+        }
     }
 }
