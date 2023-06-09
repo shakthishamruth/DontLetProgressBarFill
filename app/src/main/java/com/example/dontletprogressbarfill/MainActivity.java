@@ -3,8 +3,6 @@ package com.example.dontletprogressbarfill;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -75,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Thread.sleep(1000);
                 } catch (Exception e) {
-
                 }
             }
         }
