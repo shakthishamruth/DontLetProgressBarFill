@@ -55,6 +55,18 @@ public class MainActivity extends AppCompatActivity {
         gameOverText = findViewById(R.id.gameOverText);
     }
 
+    public void onClickPlay(View view) {
+        setContentView(R.layout.maingame);
+    }
+
+    public void onClickLeftMain(View view) {
+
+    }
+
+    public void onClickRightMain(View view) {
+
+    }
+
     class ProgressThread extends Thread {
         @Override
         public void run() {
