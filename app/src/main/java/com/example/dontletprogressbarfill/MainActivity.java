@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickPlay(View view) {
-        setContentView(R.layout.maingame);
+        //setContentView(R.layout.maingame);
     }
 
     public void onClickLeftMain(View view) {
