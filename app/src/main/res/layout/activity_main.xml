@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Chronometer
+        android:id="@+id/simpleChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
