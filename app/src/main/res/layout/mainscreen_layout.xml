@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
         android:text="Don't Let The Progress Bar Fill"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -20,29 +20,21 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
+
         <Button
             android:id="@+id/PlayButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:onClick="onClickPlay"
             android:text="Play" />
-
-        <Button
-            android:id="@+id/TestButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/PlayButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:onClick="onClickTest"
-            android:text="Test" />
 
         <Button
             android:id="@+id/SettingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TestButton"
+            android:layout_below="@+id/PlayButton"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="Settings" />

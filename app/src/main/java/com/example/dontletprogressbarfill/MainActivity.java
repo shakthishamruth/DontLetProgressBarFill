@@ -1,14 +1,23 @@
 package com.example.dontletprogressbarfill;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RelativeLayout parent;
 
     private Button Left, Right;
 
@@ -27,8 +36,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.mainscreen_layout);
     }
 
-    public void onClickLeft(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.display_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.infoButton) {
+            Toast.makeText(this, "Version 0.2", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void onClickLeft(View view) {
         if (!running) {
             running = true;
             ProgressThread thread = new ProgressThread();
@@ -49,23 +73,13 @@ public class MainActivity extends AppCompatActivity {
         fill = fill - 5;
     }
 
-    public void onClickTest(View view) {
+    public void onClickPlay(View view) {
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.progressBar);
         gameOverText = findViewById(R.id.gameOverText);
+        parent = findViewById(R.id.parent);
     }
 
-    public void onClickPlay(View view) {
-        //setContentView(R.layout.maingame);
-    }
-
-    public void onClickLeftMain(View view) {
-
-    }
-
-    public void onClickRightMain(View view) {
-
-    }
 
     class ProgressThread extends Thread {
         @Override
@@ -81,8 +95,20 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setProgress(fill);
                     }
                     if (fill >= 100 && !gameOver) {
+                        Snackbar.make(parent, "Play Again?", Snackbar.LENGTH_INDEFINITE).setAction("Yes", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                setContentView(R.layout.activity_main);
+                                progressBar = findViewById(R.id.progressBar);
+                                gameOverText = findViewById(R.id.gameOverText);
+                                parent = findViewById(R.id.parent);
+                                fill = 1;
+                                increment = 1;
+                                gameOver = false;
+                            }
+                        }).setActionTextColor(getColor(R.color.green)).show();
                         gameOverText.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.INVISIBLE);
                         gameOver = true;
                     }
                     Thread.sleep(1000);

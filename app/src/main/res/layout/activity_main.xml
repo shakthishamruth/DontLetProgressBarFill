@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Game Over"
-        android:textColor="#FF0000"
+        android:textColor="@color/red"
         android:visibility="invisible" />
 
 
