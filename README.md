@@ -1,4 +1,4 @@
-# DontLetProgressBarFill
+# Android Calculator
 
 This is a test project to learn andriod programming and git.
 
