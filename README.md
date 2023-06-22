@@ -1,6 +1,4 @@
-# Android Calculator
-
-## Note: Making a Android Calculator under Don'tLetProgressBarFill
+# Don't Let Progress Bar Fill
 
 This is a test project to learn andriod programming and git.
 
